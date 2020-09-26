@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.annotations.class }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.annotations.sslredirect }}"
+    nginx.ingress.kubernetes.io/add-base-url: "{{ .Values.ingress.annotations.addbaseurl }}"
+  namespace: {{ .Values.ingress.namespace }}
+spec:
+  rules:
+    - http:
+        paths:
+        {{- range .Values.ingress.hosts.paths }}
+          - path: {{ .path }}
+            backend:
+              serviceName: {{ .backend.serviceName }}
+              servicePort: {{ .backend.servicePort }}
+        {{- end }}

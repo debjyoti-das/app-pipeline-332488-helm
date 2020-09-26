@@ -1,0 +1,12 @@
+app:
+  name: app-pipeline-332488
+  group: app-pipeline-332488
+  namespace: debjyoti
+  container:
+    image: debjyotidas/app-pipeline-332488:9
+    port: 8090
+    env:
+      - key: name
+        value: debjyoti
+      - key: type
+        value: springboot

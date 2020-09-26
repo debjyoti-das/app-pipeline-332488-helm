@@ -1,0 +1,13 @@
+ingress:
+  name: ingress-ci
+  replicaCount: 1
+  annotations: 
+    class: nginx
+    sslredirect: false
+    addbaseurl: true
+  hosts:
+    paths: 
+      - path: /
+        backend:
+          serviceName: serviceName
+          servicePort: 8090
